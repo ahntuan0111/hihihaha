@@ -1,0 +1,283 @@
+:root {
+    --pink: #ff4d6d;
+    --bg-light: #fff5f7;
+    --glass: rgba(255, 255, 255, 0.85);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Quicksand', sans-serif; overflow-x: hidden; }
+
+.screen {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.hidden { display: none !important; }
+
+/* STYLE MÀN 1 */
+#screen-1 { background: var(--bg-light); background-image: radial-gradient(#ffccd5 1px, transparent 1px); background-size: 20px 20px; }
+.glass-card { background: var(--glass); padding: 40px; border-radius: 40px; text-align: center; max-width: 450px; box-shadow: 0 20px 40px rgba(0,0,0,0.05); border: 1px solid white; backdrop-filter: blur(10px); }
+.icon-box { background: #ffe5ec; width: 60px; height: 60px; line-height: 60px; border-radius: 15px; margin: 0 auto 20px; font-size: 30px; }
+.input-container input { width: 100%; padding: 15px; border-radius: 20px; border: 1px solid #ddd; margin: 20px 0; outline: none; }
+.btn-primary { background: var(--pink); color: white; border: none; padding: 15px 30px; border-radius: 20px; width: 100%; font-weight: bold; cursor: pointer; transition: 0.3s; }
+.wrong-box { background: #fff0f3; border: 1px solid #ffb3c1; border-radius: 25px; padding: 20px; margin-top: 20px; }
+
+/* Wheel picker styling */
+.wheel-container { display: flex; flex-direction: column; gap: 12px; align-items: center; }
+.wheels { display: flex; gap: 12px; justify-content: center; margin-bottom: 8px; }
+.wheel { background: rgba(255,255,255,0.9); border-radius: 14px; padding: 6px; width: 90px; text-align: center; box-shadow: 0 6px 18px rgba(0,0,0,0.06); }
+.wheel select { width: 100%; appearance: none; -webkit-appearance: none; border: none; outline: none; background: transparent; font-size: 1.25rem; padding: 8px 6px; color: #333; font-weight: 700; }
+.wheel-label { font-size: 0.75rem; color: #9b9b9b; margin-top: 6px; text-transform: lowercase; }
+
+/* Image choice */
+.image-choice { display: flex; justify-content: center; margin-top: 16px; }
+.image-choice img { width: 160px; border-radius: 12px; box-shadow: 0 12px 30px rgba(0,0,0,0.12); }
+
+/* Flash and correct-selection background */
+.flash-pink { animation: flashPink 600ms ease-in-out; }
+@keyframes flashPink { 0% { background-color: transparent } 50% { background-color: #ffeef2 } 100% { background-color: transparent } }
+.pink-bright { background: linear-gradient(135deg, #fff0f4 0%, #fff3f6 100%); transition: background 400ms ease-in-out; }
+
+/* Success text that appears briefly */
+.success-inline { margin-top:12px; padding:10px 16px; border-radius:18px; background: linear-gradient(90deg,#ffd7e0,#ffb3c1); color:#6a1020; font-weight:700; box-shadow:0 8px 24px rgba(255,77,109,0.12); }
+
+/* End card (Screen 3) styles */
+.end-card { backdrop-filter: blur(12px); background: rgba(30,25,35,0.65); border: 1px solid rgba(255,255,255,0.06); color: #fff; }
+.end-card .lead { color: rgba(255,255,255,0.9); margin-top:8px; }
+
+/* gradient text highlight */
+.highlight { background: linear-gradient(135deg, #ff4d6d, #ff8fa3); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight:800; }
+
+/* heartbeat animation for love button */
+.love-btn { animation: heartbeat 1.8s infinite; }
+@keyframes heartbeat { 0% { transform: scale(1); } 25% { transform: scale(1.06); } 40% { transform: scale(1); } 60% { transform: scale(1.03); } 100% { transform: scale(1); } }
+
+/* Card pop / glow when final fireworks play */
+.end-card.card-pop { animation: cardPop 800ms ease; box-shadow: 0 40px 120px rgba(255,77,109,0.18); }
+@keyframes cardPop { 0% { transform: translateY(0) scale(1); } 30% { transform: translateY(-6px) scale(1.02); } 100% { transform: translateY(0) scale(1); } }
+
+/* Fireworks canvas */
+#fireworks { position: fixed; inset: 0; pointer-events: none; z-index: 150; }
+
+/* Screen 2 toast */
+.timeline-toast { position: fixed; left: 50%; transform: translateX(-50%); top: 24px; background: linear-gradient(180deg,#fff,#fff5f8); border-radius: 18px; padding: 12px 18px; display: flex; align-items: center; gap: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.12); z-index: 60; max-width: 760px; text-align: left; }
+.timeline-toast.hidden { display: none; }
+.timeline-toast .toast-icon { font-size: 28px; }
+.timeline-toast .toast-text { font-size: 0.95rem; color: #333; }
+
+/* Timeline header */
+.timeline-head { display:flex; justify-content:center; margin-bottom:6px; }
+.days-summary { background: rgba(255,255,255,0.9); padding:8px 14px; border-radius:20px; box-shadow:0 6px 18px rgba(0,0,0,0.06); font-weight:700; }
+
+/* Timeline central line draw effect */
+.timeline-wrapper { position: relative; }
+.main-line { transition: height 0.6s ease; }
+
+/* Image placeholder for missing images */
+.img-missing { display:flex; align-items:center; justify-content:center; gap:10px; background: #fff7f9; border-radius:12px; padding:18px; color:#ff4d6d; font-weight:700; box-shadow:0 10px 30px rgba(0,0,0,0.05); }
+.img-missing .small-icon { font-size:28px; }
+
+/* CTA floating when timeline end visible */
+#timeline-cta { position: fixed; right: 20px; bottom: 24px; background: linear-gradient(90deg,#ff7aa2,#ff4d6d); color:#fff; padding:12px 16px; border-radius:999px; box-shadow:0 12px 40px rgba(255,77,109,0.18); display:none; z-index:70; cursor:pointer; font-weight:800; }
+#timeline-cta.show { display:block; animation: pulse 1.2s infinite; }
+@keyframes pulse { 0% { transform: scale(1) } 50% { transform: scale(1.05) } 100% { transform: scale(1) } }
+
+/* Centered timeline-item */
+.timeline-item.center { width: 90%; margin: 40px auto; text-align:center; }
+.timeline-item.center .dot { left: calc(50% - 20px); transform: translateX(-50%); }
+
+/* Small spacer at bottom so user can reach timeline-end */
+#timeline-last-spacer { height: 220px; }
+
+/* STYLE MÀN 2 (Timeline) */
+/* Tùy chỉnh chung cho Timeline */
+#screen-2 {
+    background-color: #fff; /* Hoặc màu nền nhẹ theo mẫu */
+}
+
+.timeline-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 80px 20px;
+}
+
+.title-timeline {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #1a2b4b;
+    margin-bottom: 100px;
+    font-family: 'Dancing Script', cursive;
+}
+
+.scroll-hint {
+    text-align: center;
+    font-size: 12px;
+    color: #bbb;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.timeline-wrapper {
+    position: relative;
+}
+
+/* Đường line đỏ chạy dọc giữa */
+.main-line {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    top: 0;
+    height: 100%;
+    background: #ff4d6d; /* Màu đỏ chủ đạo */
+    z-index: 1;
+}
+
+/* Cut the line at the final timeline dot via JS-adjusted height; visual tweaks for the today item */
+.timeline-item.is-today .dot { background: linear-gradient(180deg,#ff6b8b,#ff3f68); box-shadow: 0 0 0 6px #fff, 0 6px 24px rgba(255,77,109,0.18); }
+.timeline-item.is-today .dot i { transform: translateY(0); }
+.timeline-item.is-today .dot { animation: pulse 1.8s infinite; }
+
+@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.12); } 100% { transform: scale(1); } }
+
+/* Next button inside today card */
+.next-btn { margin-top: 16px; padding: 12px 22px; border-radius: 999px; background: linear-gradient(135deg, #ff4d6d, #ff8fa3); color: white; font-weight: 700; border: none; cursor: pointer; box-shadow: 0 8px 20px rgba(255,77,109,0.36); transform-origin: center; opacity: 0; transform: translateY(8px) scale(0.98); transition: transform 240ms cubic-bezier(.2,.9,.3,1), opacity 240ms ease, box-shadow 240ms ease; }
+.timeline-item.is-today.visible .next-btn { opacity: 1; transform: translateY(0) scale(1); }
+.next-btn:hover { transform: translateY(-4px) scale(1.03); box-shadow: 0 12px 28px rgba(255,77,109,0.55); }
+
+/* ensure dot sits above the line */
+.dot { z-index: 3; }
+
+/* Cấu trúc từng mốc sự kiện */
+.timeline-item {
+    position: relative;
+    width: 50%;
+    margin-bottom: 80px;
+    z-index: 2;
+}
+
+.timeline-item.left {
+    left: 0;
+    padding-right: 50px;
+}
+
+.timeline-item.right {
+    left: 50%;
+    padding-left: 50px;
+}
+
+/* Nút tròn trên line */
+.dot {
+    position: absolute;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    background: #ff4d6d;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    box-shadow: 0 0 0 5px #fff, 0 0 15px rgba(0,0,0,0.1);
+}
+
+.timeline-item.left .dot { right: -20px; }
+.timeline-item.right .dot { left: -20px; }
+
+/* Thẻ nội dung */
+.content {
+    background: #fff;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: 0.3s;
+}
+
+/* Đảm bảo pháo hoa không bị che bởi các thành phần khác */
+canvas {
+    z-index: 9999 !important;
+    pointer-events: none;
+}
+
+.love-btn:disabled {
+    cursor: not-allowed;
+    filter: grayscale(0.5);
+    animation: none; /* Dừng nhịp tim khi đang bắn pháo */
+}
+
+.timeline-item .date-tag {
+    display: inline-block;
+    background: #ffe5ec;
+    color: #ff4d6d;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.content h3 {
+    font-size: 1.4rem;
+    color: #1a2b4b;
+    margin-bottom: 10px;
+}
+
+.content p {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.6;
+    font-style: italic;
+}
+
+/* Hình ảnh hiển thị trong thẻ */
+.img-placeholder { margin-top:12px; display:flex; gap:16px; align-items:flex-start; }
+
+/* Gallery item */
+.img-item { overflow: hidden; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.12); transition: transform 0.32s ease, box-shadow 0.32s ease; cursor: pointer; background: #fff; }
+.img-item img { width: 160px; height: 200px; object-fit: cover; display: block; transition: transform 0.4s ease; }
+.img-item figcaption { text-align:center; padding:8px 10px; font-size: 0.9rem; color:#444; background: transparent; }
+.img-item:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 14px 40px rgba(0,0,0,0.18); }
+.img-item:hover img { transform: scale(1.08); }
+
+@media (max-width: 600px){ .img-placeholder { flex-direction: column; gap:12px; } .img-item img{ width:100%; height:200px; }}
+
+/* modal / lightbox styles */
+.modal { position: fixed; inset: 0; display:flex; align-items:center; justify-content:center; z-index:200; }
+.modal.hidden { display:none; }
+.modal-backdrop { position:absolute; inset:0; background: rgba(0,0,0,0.6); }
+.modal-content { position:relative; z-index:210; max-width:90vw; max-height:90vh; display:flex; flex-direction:column; align-items:center; gap:8px; }
+.modal-content img { max-width: 90vw; max-height: 70vh; border-radius:12px; box-shadow:0 20px 60px rgba(0,0,0,0.5); }
+.modal-caption { color:#fff; font-weight:700; text-align:center; }
+.close-btn { position:absolute; right:-8px; top:-18px; background: #fff; border-radius:50%; width:36px; height:36px; border:none; font-size:20px; cursor:pointer; box-shadow:0 6px 18px rgba(0,0,0,0.2); }
+
+.img-placeholder span {
+    display: block;
+    font-size: 10px;
+    color: #ff4d6d;
+    font-weight: bold;
+    margin-top: 8px;
+    letter-spacing: 1px;
+}
+
+/* Responsive cho điện thoại */
+@media (max-width: 768px) {
+    .main-line { left: 30px; }
+    .timeline-item { width: 100%; left: 0 !important; padding-left: 70px !important; padding-right: 20px !important; }
+    .dot { left: 10px !important; }
+}
+/* STYLE MÀN 3 (Dark Glassmorphism) */
+#screen-3 { background: linear-gradient(135deg, #1a0a1a 0%, #000000 100%); position: relative; }
+.dark-glass-card { background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(15px); padding: 50px 30px; border-radius: 40px; border: 1px solid rgba(255, 255, 255, 0.1); text-align: center; color: white; width: 450px; box-shadow: 0 40px 100px rgba(0,0,0,0.5); }
+.highlight { color: var(--pink); font-weight: bold; }
+.btn-final { background: var(--pink); color: white; border: none; padding: 15px 40px; border-radius: 30px; margin: 20px 0; font-size: 1.1rem; cursor: pointer; box-shadow: 0 0 20px rgba(255, 77, 109, 0.4); }
+.valentine-banner { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 30px 0; opacity: 0.7; }
+.valentine-banner hr { flex: 1; border: 0.5px solid rgba(255,255,255,0.2); }
+.couple-avatars { display: flex; justify-content: center; gap: -10px; margin-top: 20px; }
+.avatar { font-size: 30px; background: rgba(255,255,255,0.1); width: 60px; height: 60px; border-radius: 50%; line-height: 60px; border: 2px solid white; }
+
+/* Widget đếm ngày */
+.days-counter { position: fixed; bottom: 20px; left: 20px; background: white; padding: 10px 20px; border-radius: 30px; display: flex; align-items: center; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }

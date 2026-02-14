@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine Cho Người Thương ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+    <audio id="bg-music" loop>
+        <source src="assets/vietchoembantinhca.mp3" type="audio/mpeg">
+    </audio>
+
+    <section id="screen-1" class="screen">
+        <div class="glass-card animate__animated animate__zoomIn">
+            <div class="icon-box">📖</div>
+            <h1>Chúng mình bắt đầu hẹn hò từ ngày nào nhỉ? 💞</h1>
+            <p class="subtitle">Ngày mà anh nói </p>
+            <p class="subtitle">"Vậy Triệu Vy làm người yêu của mình nha" á</p>
+            
+            <div class="input-container">
+                <div class="wheel-container">
+                    <div class="wheels">
+                        <div class="wheel">
+                            <select id="wheel-day" aria-label="Ngày"></select>
+                            <div class="wheel-label">ngày</div>
+                        </div>
+                        <div class="wheel">
+                            <select id="wheel-month" aria-label="Tháng"></select>
+                            <div class="wheel-label">tháng</div>
+                        </div>
+                        <div class="wheel">
+                            <select id="wheel-year" aria-label="Năm"></select>
+                            <div class="wheel-label">năm</div>
+                        </div>
+                    </div>
+                    <button onclick="handleCheckDate()" class="btn-primary">Xác nhận 💖</button>
+                </div>
+            </div>
+
+            <div id="feedback-area">
+                <div id="image-choice" class="image-choice hidden animate__animated">
+                    <img src="assets/image_choice.png" alt="cute-choice">
+                </div>
+
+                <div id="wrong-msg" class="wrong-box hidden animate__animated">
+                    <div class="status-icons">💔 🐱</div>
+                    <h3>Hơiiii, Sai rồi nhaaa 😝</h3>
+                    <p>Thử lại coi, sai cái nữa là oánh liền đó</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="days-counter">
+            <div class="timer-icon">⏰</div>
+            <div class="counter-text">
+                <span>TIME ELAPSED</span>
+                <strong id="days-display">0 Days Together</strong>
+            </div>
+        </div>
+    </section>
+
+<section id="screen-2" class="screen hidden">
+    <div class="timeline-container">
+        <!-- Toast shown once when entering Screen 2 -->
+        <div id="timeline-toast" class="timeline-toast animate__animated hidden" role="status" aria-live="polite">
+            <div class="toast-icon">🐣</div>
+            <div class="toast-text">Do anh hông có đủ ảnh, nên một số buổi đi chơi sẽ thiếu ảnh nhaaa~<br>Nhưng kỷ niệm thì lúc nào cũng đủ trong tim 💖</div>
+        </div>
+
+        <div class="timeline-head">
+            <div class="days-summary">Chúng ta đã bên nhau <strong id="timeline-days">0</strong> ngày 💖</div>
+        </div>
+        <div class="scroll-hint">SCROLL DOWN <br> ︾ </div>
+        <h2 class="title-timeline" data-aos="zoom-in">Hành trình yêu thương</h2>
+        
+        <div class="timeline-wrapper">
+            <div class="main-line"></div>
+
+            <div class="timeline-item left" data-aos="fade-right">
+                <div class="dot"><i class="icon">🍽️</i></div>
+                <span class="date-tag">Những ngày đầu đi ăn với em</span>
+                <div class="content">
+                    <h3>Những ngày đầu đi ăn với em</h3>
+                    <p>Ngày đầu đi ăn với em với tư cách là người yêu. Em ôm anh thấy đúng đã luôn heheh</p>
+                    <p>Hôm đầu đi ăn mì, hôm sau đi ăn phở</p>
+                    <div class="img-placeholder" data-aos="zoom-in">
+                        <figure class="img-item">
+                            <img src="assets/1.png" alt="Ăn mì Đài Loan">
+                            <figcaption>Ăn mì đài loan</figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item right" data-aos="fade-left">
+                <div class="dot"><i class="icon">☕</i></div>
+                <span class="date-tag">14 Tháng 12, 2025</span>
+                <div class="content">
+                    <h3>Mình Đi Coffe</h3>
+                    <p>Hôm này, anh đi qua bên em, rồi đi Cafe xong đi siêu thị ời đi ăn nè</p>
+                    <div class="img-placeholder" data-aos="zoom-in">
+                        <figure class="img-item">
+                            <img src="assets/2.jpg" alt="Lắp hoa Lego">
+                            <figcaption>Ngồi trong quán cafe</figcaption>
+                        </figure>                    
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item left" data-aos="fade-right">
+                <div class="dot"><i class="icon">🎬</i></div>
+                <span class="date-tag">19 Tháng 12, 2025</span>
+                <div class="content">
+                    <h3>Mình đi chùa</h3>
+                    <p>Đi ăn lẩu gà xong mình ra công viên xếp lego</p>
+                    <div class="img-placeholder" data-aos="zoom-in">
+                        <figure class="img-item">
+                            <img src="assets/4.jpg" alt="Movie">
+                            <figcaption>Đi ăn lẩu gà</figcaption>
+                        </figure>
+                                                <figure class="img-item">
+                            <img src="assets/5.jpg" alt="Movie">
+                            <figcaption>Ra công viên xếp lego nè</figcaption>
+                        </figure>
+                                                <figure class="img-item">
+                            <img src="assets/6.jpg" alt="Movie">
+                            <figcaption>Bị bạn anh thấy nè</figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item right" data-aos="fade-left">
+                <div class="dot"><i class="icon">🎄</i></div>
+                <span class="date-tag">25 Tháng 12, 2025</span>
+                <div class="content">
+                    <h3>Hôm này mình đi chơi Noel</h3>
+                    <p>Hôm này em nói anh lớn tiếng với em. Nhma anh hông có</p>
+                    <p>Xong ời mình đi Karaoke điền cái "Năm 2025 mình đã ..."</p>
+                    <div class="img-placeholder" data-aos="zoom-in">
+                        <figure class="img-item">
+                            <img src="assets/7.jpg" alt="Trip">
+                            <figcaption>Đi karaoke</figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item left" data-aos="fade-right">
+                <div class="dot"><i class="icon">🎁</i></div>
+                <span class="date-tag">31 Tháng 12, 2025</span>
+                <div class="content">
+                    <h3>Đón giao thường cùng với em</h3>
+                    <p>Em làm tóc hôm đó đúng xinh</p>
+                    <div class="img-placeholder" data-aos="zoom-in">
+                        <figure class="img-item">
+                            <img src="assets/8.jpg" alt="Birthday">
+                            <figcaption>Xinh qué đi</figcaption>
+                        </figure>
+                        <figure class="img-item">
+                            <img src="assets/9.jpg" alt="Birthday">
+                            <figcaption>Ỏ</figcaption>
+                        </figure>                       
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item right" data-aos="fade-left">
+                <div class="dot"><i class="icon">❤️</i></div>
+                <span class="date-tag">06 Tháng 1, 2026</span>
+                <div class="content">
+                    <h3>1 Tháng của mình</h3>
+                    <p>Nguyên ngày đi chơi với em nè</p>
+                    <div class="img-placeholder" data-aos="zoom-in">
+                        <figure class="img-item">
+                            <img src="assets/10.jpg" alt="Make up">
+                            <figcaption>Đi chụp ảnh nè</figcaption>
+                        </figure>
+                        <figure class="img-item">
+                            <img src="assets/11.jpg" alt="Make up">
+                            <figcaption>Hoa cầm hoa</figcaption>
+                        </figure>
+                        <figure class="img-item">
+                            <img src="assets/12.jpg" alt="Make up">
+                            <figcaption>Quà sinh nhật em tặng</figcaption>
+                        </figure>                                                
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item left" data-aos="fade-right">
+                <div class="dot"><i class="icon">🍓</i></div>
+                <span class="date-tag">11 Tháng 1, 2026</span>
+                <div class="content">
+                    <h3>Đi ăn binsu</h3>
+                    <p>Nhma em hông lấy tiền trong ví anh. Hôm sau về anh bị wow á</p>
+                    <p>Anh có tặng em cái ly nữa nhma anh hông có chụp lại</p>
+                    <div class="img-placeholder" data-aos="zoom-in">
+                        <figure class="img-item">
+                            <img src="assets/13.jpg" alt="Xmas">
+                            <figcaption>Binsu quá ngon luôn</figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item right" data-aos="fade-left">
+                <div class="dot"><i class="icon">❤️</i></div>
+                <span class="date-tag">21 Tháng 1, 2026</span>
+                <div class="content">
+                    <h3>Mình lại đi chơi nguyên ngày</h3>
+                    <p>Anh có mua hoa lego cho em, xong ời mua thêm son dưỡng nữa. Mình còn đi ăn dimsum nữa</p>
+                    <p>Nhma anh hông có chụp ảnh lại huhu</p>
+                    <div class="img-placeholder" data-aos="zoom-in">
+                        <figure class="img-item">
+                            <img src="assets/14.jpg" alt="Make up">
+                            <figcaption>Cao hơn em 1 cái đầu luôn</figcaption>
+                        </figure>                                                
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item left" data-aos="fade-right">
+                <div class="dot"><i class="icon">☕</i></div>
+                <span class="date-tag">25 Tháng 1, 2026</span>
+                <div class="content">
+                    <h3>Đi cafe học bài, ời đi công viên</h3>
+                    <p>Tối hôm trước mình có cãi nhau. Sáng hôm sau đọc được cái toptop của em đúng buồn luôn á</p>
+                    <p>Nhma giải quyết xong hết ời Hehehe</p>
+                    <div class="img-placeholder" data-aos="zoom-in">
+                        <figure class="img-item">
+                            <img src="assets/16.jpg" alt="Xmas">
+                            <figcaption>Tô màu nè</figcaption>
+                        </figure>
+                        <figure class="img-item">
+                            <img src="assets/17.jpg" alt="Xmas">
+                            <figcaption>Anh xấu điên</figcaption>
+                        </figure>
+                        <figure class="img-item">
+                            <img src="assets/18.jpg" alt="Xmas">
+                            <figcaption>Đi công viên ời hả họng cười nè</figcaption>
+                        </figure>                                              
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item right" data-aos="fade-left">
+                <div class="dot"><i class="icon">❤️</i></div>
+                <span class="date-tag">01 Tháng 2, 2026</span>
+                <div class="content">
+                    <h3>Valentine trước tết của mình</h3>
+                    <p>Anh tặng bánh quy mềm cho em</p>
+                    <div class="img-placeholder" data-aos="zoom-in">
+                        <figure class="img-item">
+                            <img src="assets/19.jpg" alt="Xmas">
+                            <figcaption>Ỏ</figcaption>
+                        </figure>
+                        <figure class="img-item">
+                            <img src="assets/20.jpg" alt="Xmas">
+                            <figcaption>Bánh quy hơi bị ngon nhma em Ngon hơn</figcaption>
+                        </figure>                                              
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-item left" data-aos="fade-right">
+                <div class="dot"><i class="icon">☕</i></div>
+                <span class="date-tag">02 Tháng 1, 2026</span>
+                <div class="content">
+                    <h3>Di ăn lẩu chay ời em về quê ăn Tết</h3>
+                    <div class="img-placeholder" data-aos="zoom-in">
+                        <figure class="img-item">
+                            <img src="assets/21.jpg" alt="Xmas">
+                            <figcaption>Lẩu chay nè</figcaption>
+                        </figure>                                          
+                    </div>
+                </div>
+            </div>            
+
+            <div id="timeline-end"></div>
+
+            <!-- Final milestone: Hôm nay (treated as timeline-item end) -->
+            <div class="timeline-item center is-today" data-aos="fade-up">
+                <div class="content">
+                    <h3>Hôm nay…</h3>
+                    <button class="next-btn" aria-label="Tiếp tục hành trình">Đi tiếp hành trình nè 💕</button>
+                </div>
+            </div>
+
+            <div id="timeline-last-spacer"></div>
+        </div>
+    </div>
+</section>
+
+    <section id="screen-3" class="screen hidden">
+        <div class="dark-glass-card end-card animate__animated animate__fadeInUp">
+            <div class="celebration-icon">🎉</div>
+            <h1 class="end-title">Cảm ơn vì đã đến bên <span class="highlight">anh</span>.</h1>
+            <p class="lead">Anh iu Treodi nhiều nhiều nhiều</p>
+            
+            <div class="valentine-banner">
+                <hr> <span>HAPPY VALENTINE</span> <hr>
+            </div>
+            <div class="mail-icon">💌</div>
+
+            <button id="loveBtn" class="love-btn btn-final">Mãi eo</button>
+            
+            <div class="couple-avatars">
+                <div class="avatar">👦</div>
+                <div class="avatar">👧</div>
+            </div>
+            <p class="footer-text">Sẽ + thêm nhiều nhiều ngày valentine nữa nha</p>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
+    <!-- Image modal/lightbox -->
+    <div id="image-modal" class="modal hidden" aria-hidden="true">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content animate__animated animate__zoomIn">
+            <button class="close-btn" aria-label="Close">×</button>
+            <img id="modal-img" src="" alt="">
+            <div class="modal-caption"></div>
+        </div>
+    </div>
+</body>
+</html>
